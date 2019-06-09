@@ -332,7 +332,8 @@ elseif( NOT i686 AND x86_64 )
 endif()
 
 # Copy proper PKGBUILD (without bzr docs!)
-file( COPY "${CMAKE_SOURCE_DIR}/PKGBUILD" DESTINATION "${HOME_DIR}/MINGW-packages/mingw-w64-kicad-git" )
+file( COPY "${CMAKE_SOURCE_DIR}/PKGBUILD-STABLE-5.1" DESTINATION "${HOME_DIR}/MINGW-packages/mingw-w64-kicad-git" )
+file( RENAME "${HOME_DIR}/MINGW-packages/mingw-w64-kicad-git/PKGBUILD-STABLE-5.1" "${HOME_DIR}/MINGW-packages/mingw-w64-kicad-git/PKGBUILD")
 
 # Actually build KiCad
 execute_msys2_bash( "cd \"${HOME_DIR}/MINGW-packages/mingw-w64-kicad-git\" && ${EXPORT_CARCH} TERM=vt220 makepkg-mingw -s --noconfirm" "${LOG_DIR}/makepkg" )
