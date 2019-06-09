@@ -175,6 +175,7 @@ copystuff() {
         "libglib*.dll" \
         "libiconv*.dll" \
         "zlib*.dll" \
+        "libzstd.dll" \
         "libintl*.dll" \
         "libtiff*.dll" \
         "liblzma*.dll" \

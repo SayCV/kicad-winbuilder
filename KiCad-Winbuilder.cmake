@@ -132,7 +132,7 @@ macro( download_msys2mingw_base_package PACKAGE MD5 )
     test_file( TEST "${DOWNLOADS_DIR}/${PACKAGE}" ${MD5} )
     if( NOT ${TEST} )
 
-        set( _PKG_URL "http://repo.msys2.org/distrib/${HOST_ARCH}/${PACKAGE}" )
+        set( _PKG_URL "https://mirrors.tuna.tsinghua.edu.cn/msys2/distrib/${HOST_ARCH}/${PACKAGE}" )
 
         message( STATUS "Downloading ${PACKAGE}" )
         file( DOWNLOAD "${_PKG_URL}" "${DOWNLOADS_DIR}/${PACKAGE}"
