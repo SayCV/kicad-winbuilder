@@ -285,6 +285,17 @@ endmacro()
 # According to section III of http://sourceforge.net/p/msys2/wiki/MSYS2%20installation/
 # we should:
 
+if( NOT EXISTS "${LOG_DIR}/pacman_change_mirror" )
+    message( STATUS "Running change pacman server mirror" )
+    
+    # mirrorlist.msys mirrorlist.mingw32 mirrorlist.mingw64
+    file( WRITE "${CMAKE_SOURCE_DIR}/${MSYS2}/etc/pacman.d/mirrorlist.msys"    "Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/msys/\$arch/" )
+    file( WRITE "${CMAKE_SOURCE_DIR}/${MSYS2}/etc/pacman.d/mirrorlist.mingw32" "Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/i686/" )
+    file( WRITE "${CMAKE_SOURCE_DIR}/${MSYS2}/etc/pacman.d/mirrorlist.mingw64" "Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/x86_64/" )
+
+    file( WRITE "${LOG_DIR}/pacman_change_mirror" "" )
+endif()
+
 if( NOT EXISTS "${LOG_DIR}/pacman_initial" )
     execute_msys2_bash( "pacman --noconfirm -Sy" "${LOG_DIR}/pacman_initial" )
     execute_msys2_bash( "pacman --noconfirm --needed -S bash pacman pacman-mirrors msys2-runtime" "${LOG_DIR}/pacman_bash" )

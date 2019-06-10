@@ -61,6 +61,10 @@ if "x1" == "x1" set "HOME="
 DEL %TOPDIR:/=\%\%~n0.cmake.log 2>&1
 SET /a TRYCOUNTS=0
 :try_again
+
+if exist "msys64\var\lib\pacman\db.lck" DEL "msys64\var\lib\pacman\db.lck"
+if exist "msys32\var\lib\pacman\db.lck" DEL "msys32\var\lib\pacman\db.lck"
+
 cmake -Dx86_64=ON -P KiCad-Winbuilder.cmake >>%TOPDIR%/%~n0.cmake.log 2>&1
 
 if not %errorlevel% == 0 set /a TRYCOUNTS=!TRYCOUNTS!+1 && goto :try_again
